@@ -125,7 +125,7 @@ little endian (
 returns a
 .I char *
 address that represents the begining of the memory area where the image
-is stored. From this adress, the first
+is stored. From this image_adress, the first
 .I bits_per_pixel
 bits represent the color of the first pixel in the first line of
 the image. The second group of
@@ -133,7 +133,7 @@ the image. The second group of
 bits represent the second pixel of the first line, and so on.
 Add
 .I size_line
-to the adress to get the begining of the second line. You can reach any
+to the image_adress to get the begining of the second line. You can reach any
 pixels of the image that way.
 
 .B mlx_destroy_image

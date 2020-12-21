@@ -20,23 +20,3 @@ void	free_way_to_textures(t_all *all)
 	free(all->config.path_south);
 	free(all->config.path_sprite);
 }
-/* 
-void	free_map(t_all *all)
-{
-	size_t	i;
-
-	i = 0;
-	while (all->map.map[i])
-	{
-		free(all->map.map[i]);
-		i++;
-	}
-	free(all->map.map);
-}
- 
-void	free_everything(t_all *all)
-{
-	free_way_to_textures(all);
-	free_map(all);
-}
- */

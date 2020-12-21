@@ -1,4 +1,4 @@
-NAME	=	cub3D
+NAME	=	cub3D1
 
 SRCDIR	=	./srcs/
 

@@ -58,7 +58,6 @@ t_config	config_to_zero(int fd)
 	config.ceiling_color[2] = -1;
 	config.number_of_strings = 2;
 	config.fd = fd;
-	config.validity = 1;
 	return (config);
 }
 
@@ -70,7 +69,6 @@ t_config	fd_validation(char *config_file)
 	config.fd = open(config_file, O_RDONLY);
 	if (config.fd < 3 || get_next_line(config.fd, &string) < 0)
 	{
-		config.validity = 0;
 		perror("Error\nBad name of file");
 		exit(errno);
 	}

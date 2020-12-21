@@ -10,6 +10,7 @@ SRC     =	ft_strlen.c \
 			ft_strdup.c \
 			ft_strlcpy.c \
 			ft_strdup_with_border.c \
+			program_arguments_checking.c
 			
 
 

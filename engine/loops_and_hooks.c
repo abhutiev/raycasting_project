@@ -57,7 +57,7 @@ void		combined_loop(t_all *all)
 {
 	mlx_hook(all->win, KEYPRESS_EVENT, KEYPRESS_MASK, &fix_keypress, all);
 	mlx_hook(all->win, KEYRELEASE_EVENT, KEYRELEASE_MASK, &fix_keyrelease, all);
-	mlx_hook(all->win, DESTROYNOTIFY_EVENT, NO_EVENT_MASK, &red_cross, 0);
-	mlx_loop_hook(all->mlx, &action, all);
+	mlx_hook(all->win, DESTROY_NOTIFY_EVENT, NO_EVENT_MASK, &red_cross, 0);
+	mlx_loop_hook(all->mlx, &engine, all);
 	mlx_loop(all->mlx);
 }

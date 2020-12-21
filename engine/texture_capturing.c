@@ -56,3 +56,18 @@ void	textures_capturing(t_all *all)
 	get_textures_address(all);
 	free_way_to_textures(all);
 }
+
+void 	get_color_from_texture(t_all *all, t_texture texture)
+{
+	uint32_t x;
+	uint32_t y;
+
+	x = ABS(all->texture.x_coord);
+	y = ABS(all->texture.y_coord);
+	if (x > texture.width || y > texture.height)
+	{
+		all->texture.color = 0;
+		return ;
+	}
+	all->texture.color = *(uint32_t *)(texture.address + ((x + y * texture.width) * (texture.bits_per_pixel / 8)));
+}

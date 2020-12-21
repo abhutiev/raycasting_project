@@ -6,7 +6,7 @@
 /*   By: gdoge <gdoge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 14:36:43 by gdoge             #+#    #+#             */
-/*   Updated: 2020/12/01 07:46:39 by gdoge            ###   ########.fr       */
+/*   Updated: 2020/12/18 20:40:25 by gdoge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "../includes/cub3d.h"
 
 # define FIRST_WHITESPACE	9
 # define LAST_WHITESPACE	13
@@ -32,5 +33,6 @@ int			get_next_line(int fd, char **line);
 char		*ft_strdup(const char *s1);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char		*ft_strdup_with_border(char *s1, size_t len);
+void		program_arguments_checking(int argc, char **argv);
 
 #endif

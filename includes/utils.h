@@ -17,6 +17,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "cub3d.h"
 
 # define FIRST_WHITESPACE	9
 # define LAST_WHITESPACE	13

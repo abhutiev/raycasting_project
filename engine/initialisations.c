@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   work_with_ray.c                                    :+:      :+:    :+:   */
+/*   initialisations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdoge <gdoge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/16 22:08:09 by gdoge             #+#    #+#             */
-/*   Updated: 2020/12/16 22:08:34 by gdoge            ###   ########.fr       */
+/*   Created: 2020/12/18 21:21:34 by gdoge             #+#    #+#             */
+/*   Updated: 2020/12/19 12:14:38 by gdoge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	rays_to_start(t_all *all)
+void	init_some_stuff(t_all *all)
 {
-	all->ray.x_coord = all->player.x_coord;
-	all->ray.y_coord = all->player.y_coord;
+	all->ray.abscissa = 0;
+	all->ray.ordinate = 0;
+	all->texture.width = 0;
+	all->texture.height = 0;
+	all->ray.length = 0;
 }

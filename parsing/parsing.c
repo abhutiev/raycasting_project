@@ -6,36 +6,13 @@
 /*   By: gdoge <gdoge@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 16:20:38 by gdoge             #+#    #+#             */
-/*   Updated: 2020/12/16 03:20:43 by gdoge            ###   ########.fr       */
+/*   Updated: 2020/12/17 04:05:47 by gdoge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_all			get_all_information_from_config(char *filename)
-{
-	t_all	all;
-
-	all.mlx = mlx_init();
-	if (!all.mlx)
-	{
-		perror("Error\nIT'S BAD ERROR, I REALLY HAVE NO IDEA, HOW TO FIX IT");
-		exit(errno);
-	}
-	all.config = get_config(filename, all.mlx);
-	all.map.map = map_parsing(all.config, filename);
-	all.win = mlx_new_window(all.mlx, all.config.x_resolution,
-	all.config.y_resolution, "cub3D");
-	if (!all.mlx)
-	{
-		perror("Error\nIT'S BAD ERROR, I REALLY HAVE NO IDEA, HOW TO FIX IT");
-		exit(errno);
-	}
-	all.player = player_parsing(all.map.map, all.player);
-	return (all);
-}
-
-t_config		config_parsing(t_config conf)
+static t_config		config_parsing(t_config conf)
 {
 	while (get_next_line(conf.fd, &conf.buffer) && !map_started(conf.buffer))
 	{
@@ -64,7 +41,7 @@ t_config		config_parsing(t_config conf)
 	return (conf);
 }
 
-t_config		config_validation(t_config config, void *mlx)
+static t_config		config_validation(t_config config, void *mlx)
 {
 	int	size_x;
 	int	size_y;
@@ -82,10 +59,14 @@ t_config		config_validation(t_config config, void *mlx)
 	if (size_y < config.y_resolution)
 		config.y_resolution = size_y;
 	color_validation_check(config);
+	config.rgb_ceiling = (config.ceiling_color[0] << 16) |
+			(config.ceiling_color[1] << 8) | (config.ceiling_color[2]);
+	config.rgb_floor = (config.floor_color[0] << 16) |
+			(config.floor_color[1] << 8) | (config.floor_color[2]);
 	return (config);
 }
 
-t_config		get_config(char *config_file, void *mlx)
+static t_config		get_config(char *config_file, void *mlx)
 {
 	t_config	config;
 
@@ -96,4 +77,27 @@ t_config		get_config(char *config_file, void *mlx)
 	config = config_validation(config, mlx);
 	close(config.fd);
 	return (config);
+}
+
+t_all				get_all_information_from_config(char *filename)
+{
+	t_all	all;
+
+	all.mlx = mlx_init();
+	if (!all.mlx)
+	{
+		perror("Error\nIT'S BAD ERROR, I REALLY HAVE NO IDEA, HOW TO FIX IT");
+		exit(errno);
+	}
+	all.config = get_config(filename, all.mlx);
+	all.map.map = map_parsing(all.config, filename);
+	all.win = mlx_new_window(all.mlx, all.config.x_resolution,
+						all.config.y_resolution, "cub3D");
+	if (!all.mlx)
+	{
+		perror("Error\nIT'S BAD ERROR, I REALLY HAVE NO IDEA, HOW TO FIX IT");
+		exit(errno);
+	}
+	player_parsing(all.map.map, &all);
+	return (all);
 }

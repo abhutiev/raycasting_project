@@ -21,12 +21,21 @@ void	create_image(t_all *all)
 		perror("Error\nProblem somewhere in mlx");
 		exit(errno);
 	}
-	all->image.adress = mlx_get_data_addr(all->image.snapshot,
-					&(all->image.bits_per_pixel), &(all->image.size_line), 
-														&(all->image.endian));
-	if (!(all->image.adress))
+	all->image.image_adress = mlx_get_data_addr(all->image.snapshot,
+	&(all->image.bits_per_pixel), &(all->image.size_line),
+	&(all->image.endian));
+	if (!(all->image.image_adress))
 	{
 		perror("Error\nProblem somewhere in mlx");
 		exit(errno);
 	}
+}
+
+void	put_to_image(t_all *all, unsigned int color)
+{
+	char	*dst;
+
+	dst = all->image.image_adress + (all->screen.y * all->image.size_line
+			+ (all->screen.x * all->image.bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }
