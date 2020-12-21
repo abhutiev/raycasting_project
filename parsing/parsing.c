@@ -91,13 +91,6 @@ t_all				get_all_information_from_config(char *filename)
 	}
 	all.config = get_config(filename, all.mlx);
 	all.map.map = map_parsing(all.config, filename);
-	all.win = mlx_new_window(all.mlx, all.config.x_resolution,
-						all.config.y_resolution, "cub3D");
-	if (!all.mlx)
-	{
-		perror("Error\nIT'S BAD ERROR, I REALLY HAVE NO IDEA, HOW TO FIX IT");
-		exit(errno);
-	}
 	player_parsing(all.map.map, &all);
 	return (all);
 }

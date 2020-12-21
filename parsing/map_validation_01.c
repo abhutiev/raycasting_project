@@ -77,10 +77,3 @@ void		check_if_closed(char **map, t_config config)
 	}
 	free_filled(f, config.number_of_strings);
 }
-
-void		map_validation(char **map, t_config config)
-{
-	check_number_of_players(map);
-	check_unwanted_symbols(map);
-	check_if_closed(map, config);
-}

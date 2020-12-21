@@ -36,9 +36,12 @@
 # define KEY_A				0
 # define KEY_S				1
 # define KEY_D				2
+# define KEY_Q				12
+# define KEY_E				14
 # define KEY_LEFT			123
 # define KEY_RIGHT			124
-
+# define KEY_UP				126
+# define KEY_DOWN			125
 /*
 ** Events and mask for X11 define:
 */
@@ -205,10 +208,23 @@ typedef struct	s_sprite
 
 }				t_sprite;
 
+typedef struct	s_frame
+{
+	uint8_t 	flag;
+	unsigned char	bfh[14];
+	unsigned char 	bih[40];
+	uint32_t 	count;
+	uint32_t 	size_of_file;
+	uint8_t 	fd;
+	uint32_t	length;
+
+}				t_frame;
+
 typedef struct	s_all
 {
 	void		*mlx;
 	void		*win;
+	t_frame		screenshot;
 	t_screen	screen;
 	t_wall		wall;
 	t_textures	textures;
@@ -293,6 +309,18 @@ void 			rendering(t_all *all);
 void 			sprite_calculations_and_rendering(t_all *all);
 
 /*
+** File: screenshot.c
+*/
+
+void 			make_screenshot(t_all *all);
+
+/*
+** File: program_arguments_checking.c
+*/
+
+void			program_arguments_checking(int argc, char **argv, t_all *all);
+
+/*
 ** ########################################################################
 ** ########################## CONFIG PARSING ##############################
 ** ########################################################################
@@ -363,15 +391,13 @@ char			**map_parsing(t_config config, char *filename);
 ** File: map_validation_00.c
 */
 
-void			check_number_of_players(char **map);
-void			check_unwanted_symbols(char **map);
 void			check_gap(t_config config);
+void			map_validation(char **map, t_config config);
 
 /*
 ** File: map_validation_01.c
 */
 
-void			map_validation(char **map, t_config config);
 void			check_if_closed(char **map, t_config config);
 
 /*

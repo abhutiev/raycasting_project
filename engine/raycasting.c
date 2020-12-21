@@ -29,7 +29,7 @@ void	ray_casting(t_all *all)
 		rendering(all);
 		all->screen.x += 1;
 	}
-	sprite_calculations_and_rendering(all);
+	//sprite_calculations_and_rendering(all);
 }
 
 void	ray_to_start(t_all *all)

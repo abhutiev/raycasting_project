@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialisations.c                                  :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdoge <gdoge@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gdoge <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/18 21:21:34 by gdoge             #+#    #+#             */
-/*   Updated: 2020/12/19 12:14:38 by gdoge            ###   ########.fr       */
+/*   Created: 2020/10/30 01:24:50 by gdoge             #+#    #+#             */
+/*   Updated: 2020/11/13 13:44:35 by gdoge            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/utils.h"
 
-void	init_some_stuff(t_all *all)
+void	*ft_bzero(void *b, size_t len)
 {
-	all->ray.abscissa = 0;
-	all->ray.ordinate = 0;
-	all->texture.width = 0;
-	all->texture.height = 0;
-	all->ray.length = 0;
-	all->screenshot.flag = 0;
+	unsigned char	*tmp_mem;
+	size_t			i;
+
+	i = 0;
+	tmp_mem = (unsigned char *)b;
+	while (i < len)
+	{
+		tmp_mem[i] = 0;
+		i++;
+	}
+	return (b);
 }

@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	check_number_of_players(char **map)
+static void	check_number_of_players(char **map)
 {
 	size_t	i;
 	size_t	j;
@@ -41,7 +41,7 @@ void	check_number_of_players(char **map)
 	}
 }
 
-void	check_unwanted_symbols(char **map)
+static void	check_unwanted_symbols(char **map)
 {
 	size_t	i;
 	size_t	j;
@@ -65,7 +65,7 @@ void	check_unwanted_symbols(char **map)
 	}
 }
 
-void	check_gap(t_config config)
+void		check_gap(t_config config)
 {
 	char	*check;
 
@@ -83,4 +83,11 @@ void	check_gap(t_config config)
 		write(2, "Error\nGaps are forbidden!\n", 26);
 		exit(0);
 	}
+}
+
+void		map_validation(char **map, t_config config)
+{
+	check_number_of_players(map);
+	check_unwanted_symbols(map);
+	check_if_closed(map, config);
 }

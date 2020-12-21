@@ -16,34 +16,34 @@ static int	fix_keypress(int keycode, t_all *all)
 {
 	if (keycode == ESCAPE)
 		exit(0);
-	if (keycode == KEY_W)
+	if (keycode == KEY_W || keycode == KEY_UP)
 		all->key.forward = 1;
-	if (keycode == KEY_S)
+	if (keycode == KEY_S || keycode == KEY_DOWN)
 		all->key.backward = 1;
 	if (keycode == KEY_A)
 		all->key.left = 1;
 	if (keycode == KEY_D)
 		all->key.right = 1;
-	if (keycode == KEY_RIGHT)
+	if (keycode == KEY_RIGHT || keycode == KEY_E)
 		all->key.clockwise = 1;
-	if (keycode == KEY_LEFT)
+	if (keycode == KEY_LEFT || keycode == KEY_Q)
 		all->key.anticlockwise = 1;
 	return (0);
 }
 
 static int	fix_keyrelease(int keycode, t_all *all)
 {
-	if (keycode == KEY_W)
+	if (keycode == KEY_W || keycode == KEY_UP)
 		all->key.forward = 0;
-	if (keycode == KEY_S)
+	if (keycode == KEY_S || keycode == KEY_DOWN)
 		all->key.backward = 0;
 	if (keycode == KEY_A)
 		all->key.left = 0;
 	if (keycode == KEY_D)
 		all->key.right = 0;
-	if (keycode == KEY_RIGHT)
+	if (keycode == KEY_RIGHT || keycode == KEY_E)
 		all->key.clockwise = 0;
-	if (keycode == KEY_LEFT)
+	if (keycode == KEY_LEFT || keycode == KEY_Q)
 		all->key.anticlockwise = 0;
 	return (0);
 }
