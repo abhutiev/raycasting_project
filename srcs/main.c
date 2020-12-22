@@ -12,15 +12,21 @@
 
 #include "cub3d.h"
 
-//void 	sprite_rendering(t_all *all)
-//{
-//
-//}
-//
-//void	sprite_calculations_and_rendering(t_all *all)
-//{
-//
-//}
+static void 	sprite_rendering(t_all *all)
+{
+
+}
+
+static void 	sprite_calculation(t_all *all)
+{
+
+}
+
+void			sprite_calculations_and_rendering(t_all *all)
+{
+	sprite_calculation(all);
+	sprite_rendering(all);
+}
 
 int		main(int argc, char **argv)
 {

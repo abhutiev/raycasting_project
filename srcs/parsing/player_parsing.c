@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static void		north_direction_player(t_all *all)
+static void	north_direction_player(t_all *all)
 {
 	all->ray.abscissa = tan(M_PI * (VIEW_ANGLE / 360.0));
 	all->ray.ordinate = 0;
@@ -20,7 +20,7 @@ static void		north_direction_player(t_all *all)
 	all->player.x_direction = 0;
 }
 
-static void		south_direction_player(t_all *all)
+static void	south_direction_player(t_all *all)
 {
 	all->ray.abscissa = -tan(M_PI * (VIEW_ANGLE / 360.0));
 	all->ray.ordinate = 0;
@@ -28,7 +28,7 @@ static void		south_direction_player(t_all *all)
 	all->player.x_direction = 0;
 }
 
-static void		west_direction_player(t_all *all)
+static void	west_direction_player(t_all *all)
 {
 	all->ray.abscissa = 0;
 	all->ray.ordinate = -tan(M_PI * (VIEW_ANGLE / 360.0));
@@ -36,7 +36,7 @@ static void		west_direction_player(t_all *all)
 	all->player.x_direction = -1;
 }
 
-static void		east_direction_player(t_all *all)
+static void	east_direction_player(t_all *all)
 {
 	all->ray.abscissa = 0;
 	all->ray.ordinate = tan(M_PI * (VIEW_ANGLE / 360.0));
@@ -44,7 +44,7 @@ static void		east_direction_player(t_all *all)
 	all->player.x_direction = 1;
 }
 
-void			player_parsing(char **map, t_all *all)
+void		player_parsing(char **map, t_all *all)
 {
 	int			i;
 	int			j;

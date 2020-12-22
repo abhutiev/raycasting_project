@@ -25,6 +25,7 @@ PARSDIR	=	./parsing/
 
 PARSING	=	$(addprefix ${PARSDIR}, \
 			color_parsing.c \
+			sprite_parsing.c \
 			config_parsing_utils.c \
 			free_parsed.c \
 			map_parsing.c \

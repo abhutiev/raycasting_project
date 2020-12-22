@@ -12,6 +12,15 @@
 
 #include "cub3d.h"
 
+static void	map_error_management(void *checked)
+{
+	if (!checked)
+	{
+		perror("Error/n No one ever will see this message, but for error management...");
+		exit(errno);
+	}
+}
+
 static char	**map_filling(char **map, size_t number_of_strings, size_t longest)
 {
 	size_t	i;
@@ -21,12 +30,9 @@ static char	**map_filling(char **map, size_t number_of_strings, size_t longest)
 	i = 0;
 	j = 0;
 	new_map = (char **)malloc(8 * number_of_strings + 24);
+	map_error_management((void *)new_map);
 	new_map[0] = (char *)malloc(longest + 3);
-	while (j <= longest + 1)
-	{
-		new_map[0][j] = ' ';
-		j++;
-	}
+	map_error_management((void *)new_map[0]);
 	new_map[0][j] = '\0';
 	while (map[i])
 	{

@@ -92,5 +92,6 @@ t_all				get_all_information_from_config(char *filename)
 	all.config = get_config(filename, all.mlx);
 	all.map.map = map_parsing(all.config, filename);
 	player_parsing(all.map.map, &all);
+	sprite_parsing(&all);
 	return (all);
 }

@@ -45,6 +45,11 @@ char			*ft_strdup_with_border(char *s1, size_t len)
 	char	*new_str;
 
 	new_str = (char *)malloc(len + 3);
+	if (!new_str)
+	{
+		perror("Error/n No one ever will see this message, but for error management...");
+		exit(errno);
+	}
 	new_str[0] = ' ';
 	ft_strlcpy_with_border(new_str, s1, len + 1);
 	return (new_str);

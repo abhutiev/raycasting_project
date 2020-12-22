@@ -206,7 +206,9 @@ typedef struct	s_screen
 
 typedef struct	s_sprite
 {
-	int			amount;
+	size_t		number;
+	int 		*x_coord;
+	int 		*y_coord;
 }				t_sprite;
 
 typedef struct	s_frame
@@ -231,6 +233,7 @@ typedef struct	s_all
 	t_textures	textures;
 	t_pattern	texture;
 	t_player	player;
+	t_sprite 	sprite;
 	t_map		map;
 	t_key		key;
 	t_ray		ray;
@@ -306,6 +309,8 @@ void			rendering(t_all *all);
 /*
 ** File: sprite.c
 */
+
+void			sprite_calculations_and_rendering(t_all *all);
 
 /*
 ** File: screenshot.c
@@ -404,5 +409,11 @@ void			check_if_closed(char **map, t_config config);
 */
 
 void			player_parsing(char **map, t_all *all);
+
+/*
+** File: sprite_parsing.c
+*/
+
+void 				sprite_parsing(t_all *all);
 
 #endif

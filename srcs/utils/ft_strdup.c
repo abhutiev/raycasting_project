@@ -21,6 +21,11 @@ char	*ft_strdup(const char *s1)
 	new_str = (char *)malloc(memory + 1);
 	if (new_str == NULL)
 		return (NULL);
+	if (!new_str)
+	{
+		perror("Error/n No one ever will see this message, but for error management...");
+		exit(errno);
+	}
 	ft_strlcpy(new_str, s1, memory + 1);
 	return (new_str);
 }

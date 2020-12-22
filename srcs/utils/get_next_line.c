@@ -12,6 +12,15 @@
 
 #include "utils.h"
 
+static void	error_management(void *checked)
+{
+	if (!checked)
+	{
+		perror("Error/n No one ever will see this message, but for error management...");
+		exit(errno);
+	}
+}
+
 static size_t	ncopy(char **dst, const char *src, size_t len)
 {
 	size_t	i;
@@ -38,6 +47,7 @@ int				get_next_line(int fd, char **line)
 	i = 0;
 	eof = 1;
 	buffer = (char *)malloc(2048);
+	error_management((void *)buffer);
 	while (read(fd, &buffer[i], 1) == 1)
 	{
 		if (buffer[i] == '\n')
@@ -48,6 +58,7 @@ int				get_next_line(int fd, char **line)
 		i++;
 	}
 	(*line) = (char *)malloc(i + 1);
+	error_management((void *)(*line));
 	ncopy(line, buffer, i);
 	free(buffer);
 	return (!eof);
