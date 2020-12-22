@@ -42,6 +42,7 @@
 # define KEY_RIGHT			124
 # define KEY_UP				126
 # define KEY_DOWN			125
+
 /*
 ** Events and mask for X11 define:
 */
@@ -103,8 +104,8 @@ typedef struct	s_config
 	char		*path_sprite;
 	int			floor_color[3];
 	int			ceiling_color[3];
-	uint32_t 	rgb_ceiling;
-	uint32_t 	rgb_floor;
+	uint32_t	rgb_ceiling;
+	uint32_t	rgb_floor;
 	int			fd;
 	size_t		count;
 	int			i;
@@ -137,7 +138,7 @@ typedef struct	s_texture
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
-	void 		*address;
+	void		*address;
 }				t_texture;
 
 typedef struct	s_textures
@@ -160,13 +161,13 @@ typedef struct	s_image
 
 typedef struct	s_pattern
 {
-	int 		x_coord;
-	int 		y_coord;
-	int 		width;
-	int 		height;
-	uint32_t 	color;
-	double 		offset;
-	double 		coordinate;
+	int			x_coord;
+	int			y_coord;
+	int			width;
+	int			height;
+	uint32_t	color;
+	double		offset;
+	double		coordinate;
 
 }				t_pattern;
 
@@ -205,17 +206,17 @@ typedef struct	s_screen
 
 typedef struct	s_sprite
 {
-
+	int			amount;
 }				t_sprite;
 
 typedef struct	s_frame
 {
-	uint8_t 	flag;
-	unsigned char	bfh[14];
-	unsigned char 	bih[40];
-	uint32_t 	count;
-	uint32_t 	size_of_file;
-	uint8_t 	fd;
+	uint8_t		flag;
+	uint8_t		bfh[14];
+	uint8_t		bih[40];
+	uint32_t	count;
+	uint32_t	size_of_file;
+	uint8_t		fd;
 	uint32_t	length;
 
 }				t_frame;
@@ -228,7 +229,7 @@ typedef struct	s_all
 	t_screen	screen;
 	t_wall		wall;
 	t_textures	textures;
-	t_pattern 	texture;
+	t_pattern	texture;
 	t_player	player;
 	t_map		map;
 	t_key		key;
@@ -256,13 +257,13 @@ void			combined_loop(t_all *all);
 */
 
 void			create_image(t_all *all);
-void            put_to_image(t_all *all, unsigned int color);
+void			put_to_image(t_all *all, unsigned int color);
 
 /*
 ** File: engine.c
 */
 
-int 			engine(t_all *all);
+int				engine(t_all *all);
 
 /*
 ** File: texture_capturing.c
@@ -270,25 +271,25 @@ int 			engine(t_all *all);
 
 void			get_textures_address(t_all *all);
 void			textures_capturing(t_all *all);
-void		 	get_color_from_texture(t_all *all, t_texture texture);
+void			get_color_from_texture(t_all *all, t_texture texture);
 
 /*
 ** File: ray_casting.c
 */
 
-void 			ray_casting(t_all *all);
-void 			ray_to_start(t_all *all);
-void 			wall_collide(t_all *all);
+void			ray_casting(t_all *all);
+void			ray_to_start(t_all *all);
+void			wall_collide(t_all *all);
 
 /*
 ** File: calculations.c
 */
 
-void 			calculate_wall_parameters(t_all *all);
-void 			calculate_ray_length(t_all *all);
-void 			camera_plane_shift(t_all *all);
+void			calculate_wall_parameters(t_all *all);
+void			calculate_ray_length(t_all *all);
+void			camera_plane_shift(t_all *all);
 void			delta_step_calculating(t_all *all);
-void 			get_width(t_all *all);
+void			get_width(t_all *all);
 
 /*
 ** File: initialisations.c
@@ -300,19 +301,17 @@ void			init_some_stuff(t_all *all);
 ** File: rendering.c
 */
 
-void 			rendering(t_all *all);
+void			rendering(t_all *all);
 
 /*
-** File: rendering.c
+** File: sprite.c
 */
-
-void 			sprite_calculations_and_rendering(t_all *all);
 
 /*
 ** File: screenshot.c
 */
 
-void 			make_screenshot(t_all *all);
+void			make_screenshot(t_all *all);
 
 /*
 ** File: program_arguments_checking.c

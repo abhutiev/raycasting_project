@@ -1,51 +1,75 @@
 NAME	=	cub3D
 
-SRCS	=	main.c \
-            engine/engine.c \
-            engine/calculations.c \
-            engine/initialisations.c \
-            engine/loops_and_hooks.c \
-            engine/texture_capturing.c \
-            engine/work_with_images.c \
-            engine/raycasting.c \
-            engine/rendering.c \
-            engine/program_arguments_checking.c \
-            engine/screenshot.c \
-            parsing/color_parsing.c \
-            parsing/config_parsing_utils.c \
-            parsing/free_parsed.c \
-            parsing/map_parsing.c \
-            parsing/map_validation_00.c \
-            parsing/map_validation_01.c \
-            parsing/parsing.c \
-            parsing/player_parsing.c \
-            parsing/resolution_parsing.c \
-            parsing/texture_parsing.c \
-            utils/ft_atoi.c \
-            utils/ft_isdigit.c \
-            utils/ft_strdup.c \
-            utils/ft_strdup_with_border.c \
-            utils/ft_strlcpy.c \
-            utils/ft_strlen.c \
-            utils/ft_strncmp.c \
-            utils/get_next_line.c \
-            utils/ft_bzero.c \
+INCDIR	=	./includes/
+
+INC     =   $(addprefix ${INCDIR}, \
+			cub3d.h \
+            utils.h \
+            mlx.h)
+
+ENGDIR	=	./engine/
+
+ENGINE	=	$(addprefix ${ENGDIR}, \
+			engine.c \
+			calculations.c \
+			initialisations.c \
+			loops_and_hooks.c \
+			texture_capturing.c \
+			work_with_images.c \
+			raycasting.c \
+			rendering.c \
+			program_arguments_checking.c \
+			screenshot.c )
+
+PARSDIR	=	./parsing/
+
+PARSING	=	$(addprefix ${PARSDIR}, \
+			color_parsing.c \
+			config_parsing_utils.c \
+			free_parsed.c \
+			map_parsing.c \
+			map_validation_00.c \
+			map_validation_01.c \
+			parsing.c \
+			player_parsing.c \
+			resolution_parsing.c \
+			texture_parsing.c )
+
+UTILDIR	=	./utils/
+
+UTILS	=	$(addprefix ${UTILDIR}, \
+			ft_atoi.c \
+			ft_isdigit.c \
+			ft_strdup.c \
+			ft_strdup_with_border.c \
+			ft_strlcpy.c \
+			ft_strlen.c \
+			ft_strncmp.c \
+			get_next_line.c \
+			ft_bzero.c )
+
+SRCDIR	=	./srcs/
+
+SRCS	=	$(addprefix ${SRCDIR}, main.c \
+			${ENGINE} \
+			${PARSING} \
+			${UTILS})
 
 CC		=	gcc
 
 CFLAFS	=	-Wall -Wextra -Werror
 
-INCDIR	=	includes/
+MLXDIR	=	./minilibx
 
-INC     =   $(addprefix ${INCDIR}, cub3d.h \
-            utils.h \
-            mlx.h)
+MLXLIB	=	libmlx.dylib
 
-MLXLIB =   libmlx.dylib
-
-LAUNCH  =   ./cub3D
+LAUNCH	=	./cub3D
 
 MAP		=	maps/map.cub
+
+SAVE	=	--save
+
+BMP		=	cub3D.bmp
 
 GREEN	=	\033[0;32m
 
@@ -55,33 +79,62 @@ MAGENTA	=	\033[0;35m
 
 LGREEN	=	\033[1;32m
 
-LRED	=	\033[1;31m
+FGREEN	=	\033[1;32m
 
-LBLUE	=	\033[1;34m
+BLUE	=	\033[1;31m
+
+PINK	=	\033[0;34m
 
 RM      =   rm -rf
+
+COMPILATION_MSG	=	"${CYAN}"${NAME}" succesfully compiled"
+
+LIBRARY_MSG		=	"${GREEN}MLX Library succesfully compiled"
+
+BONUS_MSG	=	"${FGREEN}Bonus part succesfully compiled"
+
+LAUNCH_MSG	=	"${MAGENTA}CUB3D launched. You're welcome!"
+
+STOP_MSG	=	"${PINK}Bye! Hope, you had fun!"
+
+SCREEN_MSG	=	"${PINK}Screenshot is saved!"
+
+CLEAN_MSG	=	"${BLUE}MLX Library succesfully deleted"
+
+FCLEAN_MSG	=	"${BLUE}Every created file succesfully deleted"
+
+.PHONY: all clean fclean re bonus screen launch
 
 all: ${NAME}
 
 ${NAME}: ${INC} ${SRCS} ${MLXLIB}
 	@${CC} ${CFLAGS} ${MLXLIB} -o ${NAME} -I ${INCDIR} ${SRCS} -lmlx -framework OpenGL -framework Appkit
-	@echo "${LBLUE}"${NAME}" succesfully compiled"
+	@echo ${COMPILATION_MSG}
 
 ${MLXLIB}:
-	@$(MAKE) -C ./minilibx
-	@mv ./minilibx/${MLXLIB} ${MLXLIB}
+	@$(MAKE) -C ${MLXDIR}
+	@mv ${MLXDIR}/${MLXLIB} ${MLXLIB}
+	@echo ${LIBRARY_MSG}
 
 bonus: re
+	@echo ${BONUS_MSG}
+
+launch: ${NAME}
+	@echo ${LAUNCH_MSG}
+	@./${NAME} ${MAP}
+	@echo ${STOP_MSG}
+
+screen: all
+	@./${NAME} ${MAP} ${SAVE}
+	@echo ${SCREEN_MSG}
 
 clean:
-	@echo "${CYAN}Nothing to delete${MAGENTA}"
+	@${RM} ${BMP}
+	@echo ${CLEAN_MSG}
 
-
-fclean:
+fclean: clean
 	@${RM} ${NAME}
 	@${RM} ${MLXLIB}
-	@echo "${LRED}Every created file succesfully deleted"
+	@echo ${FCLEAN_MSG}
 
 re: fclean all
-
-.PHONY: all clean fclean re
