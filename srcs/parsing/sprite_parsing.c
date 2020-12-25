@@ -28,11 +28,14 @@ static void	sprite_counting(t_all *all)
 				all->sprite.number++;
 		}
 	}
-	all->sprite.x_coord = (int *)malloc(sizeof(int) * (all->sprite.number + 1));
-	all->sprite.y_coord = (int *)malloc(sizeof(int) * (all->sprite.number + 1));
-	if (!(all->sprite.x_coord) || !(all->sprite.y_coord))
+	all->sprite.x = (double *)malloc(sizeof(double) * (all->sprite.number + 1));
+	all->sprite.y = (double *)malloc(sizeof(double) * (all->sprite.number + 1));
+	all->sprite.dist = (double *)malloc(8 * all->sprite.number + 1);
+	all->sprite.ray = (double *)malloc(8 * all->config.x_resolution);
+	if (!(all->sprite.x) || !(all->sprite.y))
 	{
-		perror("Error/n No one ever will see this message, but for error management...");
+		write(2, "Error/n No one", 14);
+		perror(" ever will see this message, but for error management...");
 		exit(errno);
 	}
 }
@@ -45,8 +48,8 @@ void		sprite_parsing(t_all *all)
 
 	sprite_counting(all);
 	sprite_counter = 0;
-	all->sprite.x_coord[all->sprite.number] = 0;
-	all->sprite.y_coord[all->sprite.number] = 0;
+	all->sprite.x[all->sprite.number] = 0;
+	all->sprite.y[all->sprite.number] = 0;
 	i = -1;
 	while (all->map.map[++i])
 	{
@@ -55,8 +58,8 @@ void		sprite_parsing(t_all *all)
 		{
 			if (all->map.map[i][j] == '2')
 			{
-				all->sprite.x_coord[sprite_counter] = i;
-				all->sprite.y_coord[sprite_counter] = j;
+				all->sprite.x[sprite_counter] = j + 0.5;
+				all->sprite.y[sprite_counter] = i + 0.5;
 				sprite_counter++;
 			}
 		}

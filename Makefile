@@ -19,6 +19,8 @@ ENGINE	=	$(addprefix ${ENGDIR}, \
 			raycasting.c \
 			rendering.c \
 			program_arguments_checking.c \
+			sprite_calculation_and_rendering.c \
+			sprite_utils.c \
 			screenshot.c )
 
 PARSDIR	=	./parsing/
@@ -58,7 +60,7 @@ SRCS	=	$(addprefix ${SRCDIR}, main.c \
 
 CC		=	gcc
 
-CFLAFS	=	-Wall -Wextra -Werror
+CFLAFS	=	-g -Wall -Wextra -Werror
 
 MLXDIR	=	./minilibx
 

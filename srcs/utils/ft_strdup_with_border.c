@@ -47,7 +47,8 @@ char			*ft_strdup_with_border(char *s1, size_t len)
 	new_str = (char *)malloc(len + 3);
 	if (!new_str)
 	{
-		perror("Error/n No one ever will see this message, but for error management...");
+		write(2, "Error/n No one", 14);
+		perror(" ever will see this message, but for error management...");
 		exit(errno);
 	}
 	new_str[0] = ' ';

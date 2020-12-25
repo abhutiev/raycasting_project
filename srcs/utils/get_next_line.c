@@ -12,11 +12,12 @@
 
 #include "utils.h"
 
-static void	error_management(void *checked)
+static void		error_management(void *checked)
 {
 	if (!checked)
 	{
-		perror("Error/n No one ever will see this message, but for error management...");
+		write(2, "Error/n No one", 14);
+		perror(" ever will see this message, but for error management...");
 		exit(errno);
 	}
 }

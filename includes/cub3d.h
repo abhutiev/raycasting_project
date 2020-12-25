@@ -165,7 +165,7 @@ typedef struct	s_pattern
 	int			y_coord;
 	int			width;
 	int			height;
-	uint32_t	color;
+	uint64_t	color;
 	double		offset;
 	double		coordinate;
 
@@ -206,9 +206,30 @@ typedef struct	s_screen
 
 typedef struct	s_sprite
 {
-	size_t		number;
-	int 		*x_coord;
-	int 		*y_coord;
+	int			number;
+	double		*x;
+	double		*y;
+	double		*dist;
+	double		tmp;
+	int			i;
+	double		*ray;
+	double		x_cur;
+	double		y_cur;
+	double		determ;
+	double		x_transpon;
+	double		y_transpon;
+	double		plane;
+	int			width;
+	int			height;
+	int			x_pix_1;
+	int			x_pix_last;
+	int			y_pix_1;
+	int			y_pix_last;
+	int			current;
+	int			loop_y;
+	int			loop_x;
+	int			y_color;
+	int			shit;
 }				t_sprite;
 
 typedef struct	s_frame
@@ -233,7 +254,7 @@ typedef struct	s_all
 	t_textures	textures;
 	t_pattern	texture;
 	t_player	player;
-	t_sprite 	sprite;
+	t_sprite	sprite;
 	t_map		map;
 	t_key		key;
 	t_ray		ray;
@@ -325,6 +346,18 @@ void			make_screenshot(t_all *all);
 void			program_arguments_checking(int argc, char **argv, t_all *all);
 
 /*
+** File: sprite_calculations_and_rendering.c
+*/
+
+void			sprite_calculations_and_rendering(t_all *all);
+
+/*
+** File: sprite_utils.c
+*/
+
+void			render_sprite(t_all *all);
+
+/*
 ** ########################################################################
 ** ########################## CONFIG PARSING ##############################
 ** ########################################################################
@@ -369,7 +402,7 @@ t_config		get_number_of_strings(t_config config);
 ** File: parsing.c
 */
 
-t_all			get_all_information_from_config(char *filename);
+void			get_all_information_from_config(char *filename, t_all *all);
 
 /*
 ** File: free_parsed.c
@@ -414,6 +447,6 @@ void			player_parsing(char **map, t_all *all);
 ** File: sprite_parsing.c
 */
 
-void 				sprite_parsing(t_all *all);
+void			sprite_parsing(t_all *all);
 
 #endif

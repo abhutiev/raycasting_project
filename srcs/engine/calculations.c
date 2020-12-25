@@ -79,6 +79,7 @@ void	calculate_ray_length(t_all *all)
 		all->ray.length = (all->ray.x_coord - all->player.x_coord
 				+ (1 - all->ray.x_step) / 2) / all->ray.x_direction;
 	}
+	all->sprite.ray[all->screen.x] = all->ray.length;
 }
 
 void	calculate_wall_parameters(t_all *all)

@@ -79,5 +79,4 @@ void			rendering(t_all *all)
 	ceiling_rendering(all);
 	floor_rendering(all);
 	wall_rendering(all);
-	//sprite_rendering(all);
 }
